@@ -6,7 +6,14 @@ package com.github.matek2305.gop;
 public class Main {
 
     public static void main(String[] args) {
-        SimplePojo simplePojo = ObjectPopulator.populate(new SimplePojo());
+        PopulatorConfiguration configuration = new PopulatorConfigurationBuilder()
+                .withValueProvider(String.class, () -> "string")
+                .withValueProvider(long.class, () -> 23L)
+                .build();
+
+        ObjectPopulator populator = new ObjectPopulator(configuration);
+
+        SimplePojo simplePojo = populator.populate(new SimplePojo());
         System.out.println(simplePojo);
     }
 }
