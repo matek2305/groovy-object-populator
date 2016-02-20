@@ -1,4 +1,6 @@
-package com.github.matek2305.gop;
+package com.github.matek2305.gop.configuration;
+
+import com.github.matek2305.gop.ValueProvider;
 
 import java.util.HashMap;
 import java.util.Map;
