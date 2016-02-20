@@ -1,1 +1,1 @@
-# groovy-object-populator
+# groovy-object-populator [![Build Status](https://travis-ci.org/matek2305/groovy-object-populator.svg?branch=master)](https://travis-ci.org/matek2305/groovy-object-populator) [![codecov.io](https://codecov.io/github/matek2305/groovy-object-populator/coverage.svg?branch=master)](https://codecov.io/github/matek2305/groovy-object-populator?branch=master)
