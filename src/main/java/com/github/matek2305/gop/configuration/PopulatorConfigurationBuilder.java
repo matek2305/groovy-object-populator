@@ -11,13 +11,21 @@ import java.util.Map;
 public class PopulatorConfigurationBuilder {
 
     private Map<Class<?>, ValueProvider<?>> valueProviderMap = new HashMap<>();
+    private boolean skipNotNullProperties = false;
 
     public <T> PopulatorConfigurationBuilder withValueProvider(Class<T> type, ValueProvider<T> valueProvider) {
         valueProviderMap.put(type, valueProvider);
         return this;
     }
 
+    public PopulatorConfigurationBuilder skipNotNullProperties() {
+        skipNotNullProperties = true;
+        return this;
+    }
+
     public PopulatorConfiguration build() {
-        return new PopulatorConfiguration(valueProviderMap);
+        PopulatorConfiguration configuration = new PopulatorConfiguration(valueProviderMap);
+        configuration.setSkipNotNullProperties(skipNotNullProperties);
+        return configuration;
     }
 }

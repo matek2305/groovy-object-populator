@@ -14,9 +14,17 @@ class ObjectPopulator {
     }
 
     public <T> T populate(T obj) {
+        if (obj == null) {
+            throw new NullPointerException("population target cannot be null")
+        }
+
         obj.metaClass.properties.forEach({ MetaProperty prop ->
+            if (configuration.isSkipNotNullProperties() && prop.getProperty(obj) != null) {
+                return
+            }
+
             if (configuration.hasProviderForType(prop.type)) {
-                prop.setProperty(obj, configuration.getValueProvider(prop.type).getValue())
+                prop.setProperty(obj, configuration.getValueProvider(prop.type).getValue(prop))
             }
         })
 

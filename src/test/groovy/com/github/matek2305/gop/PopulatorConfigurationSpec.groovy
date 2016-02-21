@@ -16,14 +16,19 @@ class PopulatorConfigurationSpec extends Specification {
         then:
             configuration.hasProviderForType(String)
             configuration.getValueProvider(String) == stringValueProvider
-            'string'.equals(configuration.getValueProvider(String).getValue())
+            'string'.equals(configuration.getValueProvider(String).getValue(null))
     }
 
     def "should not have any providers when empty map"() {
         when:
             PopulatorConfiguration configuration = new PopulatorConfiguration([:])
         then:
-            configuration.hasProviderForType(String) == false
+            !configuration.hasProviderForType(String)
             configuration.getValueProvider(String) == null
+    }
+
+    def "skip not null properties should be set to false by default"() {
+        expect:
+            !new PopulatorConfiguration([:]).skipNotNullProperties
     }
 }

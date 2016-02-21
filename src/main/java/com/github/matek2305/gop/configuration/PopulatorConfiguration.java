@@ -11,6 +11,8 @@ public class PopulatorConfiguration {
 
     private final Map<Class<?>, ValueProvider<?>> valueProviderMap;
 
+    private boolean skipNotNullProperties = false;
+
     public PopulatorConfiguration(Map<Class<?>, ValueProvider<?>> valueProviderMap) {
         this.valueProviderMap = valueProviderMap;
     }
@@ -22,5 +24,13 @@ public class PopulatorConfiguration {
     @SuppressWarnings("unchecked")
     public <T> ValueProvider<T> getValueProvider(Class<T> type) {
         return (ValueProvider<T>) valueProviderMap.get(type);
+    }
+
+    public boolean isSkipNotNullProperties() {
+        return skipNotNullProperties;
+    }
+
+    public void setSkipNotNullProperties(boolean skipNotNullProperties) {
+        this.skipNotNullProperties = skipNotNullProperties;
     }
 }
